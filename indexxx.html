@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منصة تواصل اجتماعي</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 280px 1fr 320px;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+
+    .sidebar {
+      background: #111827;
+      padding: 25px;
+      border-left: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 40px;
+      color: #38bdf8;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .menu a {
+      background: rgba(255,255,255,0.04);
+      padding: 15px;
+      border-radius: 14px;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .menu a:hover {
+      background: #38bdf8;
+      transform: translateX(-5px);
+    }
+
+    /* Main */
+
+    .main {
+      padding: 30px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+
+    .search-box {
+      flex: 1;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: #1e293b;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .profile-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #1e293b;
+      padding: 10px 18px;
+      border-radius: 14px;
+    }
+
+    .profile-mini img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Create Post */
+
+    .create-post {
+      background: #111827;
+      padding: 25px;
+      border-radius: 22px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .create-post textarea {
+      width: 100%;
+      min-height: 120px;
+      resize: none;
+      border: none;
+      outline: none;
+      border-radius: 16px;
+      padding: 18px;
+      background: #1e293b;
+      color: white;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+
+    .post-btn {
+      margin-top: 18px;
+      padding: 14px 28px;
+      border: none;
+      background: linear-gradient(45deg,#0ea5e9,#38bdf8);
+      color: white;
+      font-size: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .post-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Posts */
+
+    .feed {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .post {
+      background: #111827;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 22px;
+    }
+
+    .post-header img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .post-user h3 {
+      font-size: 18px;
+    }
+
+    .post-user span {
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    .post-content {
+      padding: 0 22px 20px;
+      line-height: 2;
+      font-size: 16px;
+      color: #e5e7eb;
+    }
+
+    .post-image {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .post-actions {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .action-btn {
+      background: rgba(255,255,255,0.05);
+      padding: 12px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .action-btn:hover {
+      background: #0ea5e9;
+    }
+
+    /* Right Sidebar */
+
+    .rightbar {
+      background: #111827;
+      padding: 25px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+      font-size: 22px;
+      color: #38bdf8;
+    }
+
+    .friend {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .friend-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .friend img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .follow-btn {
+      border: none;
+      background: #38bdf8;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .trend {
+      padding: 15px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      margin-bottom: 12px;
+    }
+
+    .trend p {
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+
+    @media(max-width:1200px){
+      .container{
+        grid-template-columns: 90px 1fr;
+      }
+
+      .rightbar{
+        display:none;
+      }
+
+      .logo{
+        font-size:20px;
+      }
+
+      .menu a{
+        text-align:center;
+      }
+    }
+
+    @media(max-width:768px){
+      .container{
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar{
+        display:none;
+      }
+
+      .main{
+        padding:15px;
+      }
+
+      .topbar{
+        flex-direction:column;
+      }
+
+      .post-image{
+        height:220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+      <aside class="sidebar">
+      <div class="logo">ALTAALUM</div>
+
+      <div class="menu">
+        <a href="#">🏠 الرئيسية</a>
+        <a href="#">🔥 الترند</a>
+        <a href="#">💬 الرسائل</a>
+        <a href="#">👥 الأصدقاء</a>
+        <a href="#">📸 الصور</a>
+        <a href="#">🎥 الفيديوهات</a>
+        <a href="#">⚙️ الإعدادات</a>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <div class="topbar">
+        <div class="search-box">
+          <input type="text" placeholder="ابحث عن أشخاص أو منشورات...">
+        </div>
+
+        <div class="profile-mini">
+          <img src="data:image/jpeg;base64,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">
+          <div>
+            <strong>أحمد</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="create-post">
+        <h2>✨ ماذا يدور في ذهنك؟</h2>
+        <textarea placeholder="اكتب منشورك هنا..."></textarea>
+        <button class="post-btn">نشر المنشور 🚀</button>
+      </div>
+
+      <div class="feed">
+
+        <div class="post">
+          <div class="post-header">
+            <img src="https://scontent.fruh4-5.fna.fbcdn.net/v/t1.6435-9/131916004_205196411236202_2394499985126332119_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=7b2446&_nc_ohc=hQDbVnWoBJMQ7kNvwFYnkJZ&_nc_oc=Adpy657X4llyaZfC4ebDMhW0tXWikp-hGl7er3JU8se25W0BVpGYvqslriU2YjdB0KA&_nc_zt=23&_nc_ht=scontent.fruh4-5.fna&_nc_gid=flnVfHY4f9IyDO-5394-3A&_nc_ss=7b2a8&oh=00_Af6AcbL5DqNie84bBWGztKuI_Lw-cMbIBDQ0l4N9bvqNBA&oe=6A28AF37">
+
+            <div class="post-user">
+              <h3>محمد خالد</h3>
+              <span>منذ ساعتين</span>
+            </div>
+          </div>
+
+          <div class="post-content">
+            اليوم أنهيت تصميم واجهة جديدة لموقعي 🚀🔥
+            ما رأيكم بالتصميم؟
+          </div>
+
+          <img class="post-image" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="post-actions">
+            <div class="action-btn">❤️ إعجاب</div>
+            <div class="action-btn">💬 تعليق</div>
+            <div class="action-btn">📤 مشاركة</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="post-header">
+            <img src="https://img.pikbest.com/ai/illus_our/20230423/9820ca8777fac37cf2537c3e68ebbeca.jpg!bw800">
+
+            <div class="post-user">
+              <h3>سالم علي</h3>
+              <span>منذ 5 ساعات</span>
+            </div>
+          </div>
+
+          <div class="post-content">
+            لا يوجد أجمل من البرمجة عندما تتحول الأفكار إلى مشاريع حقيقية 💻✨
+          </div>
+
+          <img class="post-image" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="post-actions">
+            <div class="action-btn">❤️ إعجاب</div>
+            <div class="action-btn">💬 تعليق</div>
+            <div class="action-btn">📤 مشاركة</div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <aside class="rightbar">
+
+      <div class="card">
+        <h2>👥 اقتراحات</h2>
+
+        <div class="friend">
+          <div class="friend-info">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMMfXyaxUiu4tZPJXxs6YJOEt5yrlO8P_Egw&s">
+            <div>
+              <strong>عبدالله</strong>
+            </div>
+          </div>
+
+          <button class="follow-btn">متابعة</button>
+        </div>
+
+        <div class="friend">
+          <div class="friend-info">
+            <img src="https://i.pravatar.cc/150?img=55">
+            <div>
+              <strong>سعد</strong>
+            </div>
+          </div>
+
+          <button class="follow-btn">متابعة</button>
+        </div>
+
+        <div class="friend">
+          <div class="friend-info">
+            <img src="https://i.pravatar.cc/150?img=18">
+            <div>
+              <strong>يوسف</strong>
+            </div>
+          </div>
+
+          <button class="follow-btn">متابعة</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🔥 الترند</h2>
+
+        <div class="trend">
+          <strong>#برمجة</strong>
+          <p>أكثر المواضيع تداولًا اليوم</p>
+        </div>
+
+        <div class="trend">
+          <strong>#تصميم_واجهات</strong>
+          <p>آلاف المنشورات الجديدة</p>
+        </div>
+
+        <div class="trend">
+          <strong>#ذكاء_اصطناعي</strong>
+          <p>أحدث تقنيات 2026</p>
+        </div>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</body>
+</html>
